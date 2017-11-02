@@ -1,0 +1,49 @@
+<html>
+<script src="https://code.jquery.com/jquery-2.1.4.js"></script>
+
+	<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <script type="text/javascript">
+
+
+         $.getJSON( "/cant", function( data ) {
+
+      google.load("visualization", "1", {packages:["corechart"]});
+      google.setOnLoadCallback(drawChart);
+   
+          console.log(data[0]['total']);
+            a=data[0]['total'];
+            b=data[1]['total'];
+            c=data[2]['total'];
+            d=data[3]['total'];
+
+        function drawChart() {
+
+        var data = google.visualization.arrayToDataTable([
+          ['Disposition', 'Cantidad'],
+          ['Answer',a],
+          ['No Answer',b],
+          ['Busy',c],
+          ['Failed',d],
+        ]);
+
+        var options = {
+        title: 'ESTADO DE LLAMADAS',
+        is3D: true,
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('piechart_3d'));
+        chart.draw(data, options);
+        }
+
+      });  
+   </script>
+  </script>
+
+ <body>
+
+ <table>
+ 	<td id="piechart_3d" style="width: 500px; height: 400px;"></td>
+ 	 </table>
+
+</body>
+</html>

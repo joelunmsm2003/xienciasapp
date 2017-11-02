@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html ng-app="myApp" ng-controller="Todo">
+<head>
+    <title>Xiencias</title>
+   {% include "head.html" %}
+   
+</head>
+<body>
+
+        {% include "header1.html" %}
+
+        <div class='cuerpo'>
+
+        {% include "verticalblaster.html" %}
+
+
+        <div class='derecha'>
+            
+                 <div class='container'>
+
+                     <h2>Introducción</h2>
+
+                                    <h5>Bienvenido a la documentación de la API de Voz!</h5>
+                                    <hr align="left"  size="20" width="100%" />
+                       
+
+
+                                    <p>Este documento le proveera instrucciones sobre cómo integrar rápidamente los servicios de llamada de voz en varias soluciones</p><p> mediante el uso de la interfaz de programación de aplicaciones . La API HTTP se puede utilizar para el envío de llamadas de voz VOIP, reportes de respuesta, etc </p>
+
+                                    <p>La API de Xiencias se basa en estándares REST, que le permite utilizar el navegador para acceder a URLs.</p><p> Con el fin de interactuar con nuestra API, cualquier cliente HTTP en cualquier lenguaje de programación podra utilizarlo.</p><br>
+
+                                 
+
+                                    <h4>Base URL</h4>
+                                    <hr align="left"  size="20" width="80%" />
+
+                                    <p>Presentar todas las peticiones a la URL base. Todas las solicitudes son enviadas con metodo HTTP POST, por lo que el tráfico se cifra y la privacidad está garantizada.</p>
+
+                                    <div class="well">Base URL: https://xiencias.com:9000</div>
+
+                                    <h4>Autorizacion</h4>
+                                    <hr align="left"  size="20" width="100%" />
+                                    <p> Nosotros utilizamos la autorizacion usando el username y password codificado en Base64 <a href='https://www.base64encode.org/'>aqui</a></p>
+
+                                    <p> La autorizacion es construida como sigue: </p>
+                                    <p>usuario y password son combinados en el siguiente string username:password</p>
+                                    <p>El resultado del string es codificado en Base64</p>
+
+                                    <br>
+                                    <h4>Content-Type</h4>
+                                    <hr align="left"  size="20" width="100%" />
+
+                                  
+                                    <p>API Voip soporta JSON  y acepta criterios que deben ser especificados. Si no se especifica el tipo de contenido usted recibirá un error general.</p>
+
+                                    <p>Acepta el encabezado: application/json </p>
+
+                                    <p><a href="/doccarga/">Siguiente: </a>Envía tu primera llamada de voz VOIP.</p>
+
+                                    <br></br>
+
+
+
+
+                     </div>
+        </div>
+
+        </div>
+
+
+
+
+   
+
+</body>
+</html>

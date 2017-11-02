@@ -1,0 +1,100 @@
+<style>
+
+header,.table{
+	display:none;
+}
+
+</style>
+
+<header>
+		<div class="menu_bar">
+			<a href="#" class="bt-menu">Xiencias<i class="fa fa-bars"></i></a>
+			
+		</div>
+
+		<nav>
+			<ul>
+				<!-- <li class='logox' onclick='ocultamenuv()' ng-if="user.cliente__name='beyond'">{[{user.cliente__name}]}</li>
+ -->
+				<li class='logox' onclick='ocultamenuv()'>{[{user.cliente__name}]}</li>
+
+				<li ng-if="blaster == 1"><a href="/mlote"><span class='icon'><i class="fa fa-comment-o"></i></span><span class='texto'> Blaster</span></a></li>
+
+				<li ng-if="sms == 1"><a href="/sms"><span class='icon'><i class="fa fa-paper-plane"></i></span><span class='texto'> SMS</span></a></li>
+
+				<li ng-if="mail == 1"><a href="/mail"><span class='icon'><i class="fa fa-envelope"></i></span><span class='texto'> Mail</span></a></li>
+
+				<li  ng-if="monitor == 1"><a href="/monitoreo"><span class='icon'><i class="fa fa-area-chart"></i></span><span class='texto'> Monitor</span></a></li>
+
+				<li ng-if="cdr == 1"><a href="/cdr"><span class='icon'><i class="fa fa-line-chart"></i></span><span class='texto'> CDR</span></a></li> 
+
+				<li ng-if="cdr == 1"><a href="/sup"><span class='icon'><i class="fa fa-{[{sup.icono}]}"></i></span><span class='texto'> {[{sup.nombre}]}</span></a></li>
+
+				<li ng-if="cdr == 1"><a href="/age"><span class='icon'><i class="fa fa-{[{age.icono}]}"></i></span><span class='texto'> {[{age.nombre}]}</span></a></li>
+
+				<li ng-if="cdr == 1"><a href="/ccbasic"><span class='icon'><i class="fa fa-{[{age.icono}]}"></i></span><span class='texto'> {[{ccbasic.nombre}]}</span></a></li>
+
+
+				<li class="submenu login">
+					<a href="#"><span class='icon'><i class="fa fa-user"></i></span><span class='texto'> {[{user.first_name}]}</span></a>
+					<ul class="children">
+
+						<li  ng-if="user.authusergroups__group_id__name == 'Admin' || user.authusergroups__group_id__name == 'Manager' || user.authusergroups__group_id__name == 'Superuser' "><a href="/cliente"><span class='icon'><i class="fa fa-building-o"></i></span><span class='texto1'> Clientes</span></a></li>
+
+						<li  ng-if="user.authusergroups__group_id__name == 'Admin' || user.authusergroups__group_id__name == 'Manager' || user.authusergroups__group_id__name == 'Superuser' "><a href="/servicio"><span class='icon'><i class="fa fa-cog"></i></span><span class='texto1'> Servicios</span></a></li>
+
+						<li><a href="/agenda"><span class='icon'><i class="fa fa-globe"></i></span><span class='texto1'> Base</span></a></li>
+
+
+						
+
+						<!--<li><a href="/cdr"><span class='icon'><i class="fa fa-line-chart"></i></span><span class='texto'>Help</span></a></li>-->
+
+						<li><a href="/salir"><span class='icon'><i class="fa fa-power-off"></i></span><span class='texto1'>Salir</span></a></li>
+						
+					</ul>
+				</li>
+
+				<li class='login'><a href="/configuracion"><span class='icon'><i class="fa fa-bell-o"></i></span><span class='texto'> {[{user.authusergroups__group_id__name}]}</span></a></li>
+				
+				
+			</ul>
+		</nav>
+	</header>
+
+<script type="text/javascript">
+
+i=0
+
+	
+	// function ocultamenuv(){
+
+
+	// 	i=i+1
+	// 	console.log(i)
+
+	// if (i%2 == 0){
+
+ //        $('.izquierda').css( "display","block");
+ //        $('.izquierda').addClass('animated fadeInLeft');
+
+ //    }
+ //    else{
+
+ //      $('.izquierda').css( "display","none");
+
+ 
+    
+
+ //    }
+
+
+	// }
+
+
+
+
+	
+
+
+</script>

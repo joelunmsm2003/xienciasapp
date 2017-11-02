@@ -1,0 +1,15 @@
+curl  -u usuario:password -T audio.mp3 ftp:/xiencias.com/host/
+
+curl -u api:api -T trama.txt ftp:/xiencias.com/files
+
+sudo chown audios:audios -R /home/audios
+
+sudo useradd audiosuser
+
+sudo passwd audiosuser
+
+
+sudo chown audiosuser:audiosuser -R /var/www/html/files/
+
+
+sudo usermod -d /var/www/html/files/ audiosuser

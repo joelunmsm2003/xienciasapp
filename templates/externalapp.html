@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html ng-app="myApp" ng-controller="Todo">
+<head>
+    <title>Xiencias</title>
+
+     {% include "head.html" %}
+
+    <script type="text/javascript" src="/static/js/externalapp.js"></script>
+  
+</head>
+<body>
+
+    {% include "header1.html" %}
+
+
+
+    <div class='container'>
+
+    <div class="panel panel-default">
+  <div class="panel-body">
+
+
+
+        {% include "serviciomenu.html" %}
+
+
+
+              <button type="button" class="btn btn-primary" ng-click="agregar(contact,$index)" data-toggle="modal" data-target="#external"><i class="fa fa-plus"></i></button>
+
+              <h4>External Apps</h4>
+
+
+            <table class="table  table-condensed table-hover ">
+              <tbody>
+              <thead>
+                  <tr>
+
+
+                        <th class='id'>Id <a ng-click="sort_by('id',currentPage)"><i class="icon-sort"></i></a></th>
+                        <th class='url'>URL <a ng-click="sort_by('url',currentPage)"><i class="icon-sort"></i></a></th>
+
+                        <th class='nombre'>Nombre  <a ng-click="sort_by('nombre',currentPage)"><i class="icon-sort"></i></a></th>
+                        <th class='icono'>Icono  <a ng-click="sort_by('icono',currentPage)"><i class="icon-sort"></i></a></th>
+                        <th class='servicio__name'>Servicio  <a ng-click="sort_by('servicio__name',currentPage)"><i class="icon-sort"></i></a></th>
+                  </tr>
+                  </thead>
+
+                <tfoot>
+
+                    <td colspan="6">
+                        <div class=" pagination pull-right">
+                            <ul>
+                                <li ng-class="{disabled: currentPage == 0}">
+                                    <a href ng-click="prevPage()">« Prev</a>
+                                </li>
+                                <li ng-repeat="n in range(pagedItems.length)"
+                                    ng-class="{active: n == currentPage}"
+                                ng-click="setPage()">
+                                    <a href ng-bind="n + 1">1</a>
+                                </li>
+                                <li ng-class="{disabled: currentPage == pagedItems.length - 1}">
+                                    <a href ng-click="nextPage()">Next »</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </td>
+                </tfoot>
+
+
+
+       
+
+                    <tr class='animate' ng-repeat="contact in pagedItems[currentPage]  " ts-repeat>
+
+                      <td>{[{contact.id}]} </td>
+                  
+                   
+                      
+                      <td>{[{contact.url}]}</td>
+                      <td>{[{contact.nombre}]}</td>
+                      <td>{[{contact.icono}]}</td>
+                      <td>{[{contact.servicio__name}]}</td>
+                      
+                      <td>
+                <button type="button" class="btn btn-primary btn-sm" ng-click="edit(contact,$index,currentPage)" data-toggle="modal" data-target="#edit"><i class="fa fa-pencil-square-o"></i></button>
+                <button type="button" class="btn btn-primary btn-sm" ng-click="eliminar(contact,$index,currentPage)" data-toggle="modal" data-target="#eliminar"><i class="fa fa-trash"></i></button>
+                     
+                </td>
+               
+                      <td>
+                     <!-- <button class="btn btn-primary" ng-click='Admin(contact)'>+</button>-->
+                    </td>
+                    <td> 
+                      
+                    </td>
+
+                    </tr>
+
+              </tbody>
+
+              </table>
+
+
+
+    </div>
+
+
+    </div>
+</div>
+
+
+    <!--Modales-->
+
+        <div id="external" class="modal fade" role="dialog">
+          <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Agregar External App</h4>
+              </div>
+              <div class="modal-body">
+                                    <form ng-submit="agregar(model)">
+
+                                    <div class='row'>
+                          
+
+                                    <div class="col-md-12">
+                                    <p>Nombre</p>
+                                    <input type="text" class="form-control" ng-model="model.nombre" required ="" >
+                                    </div>
+                                    <div class="col-md-12">
+                                    <p>URL</p>
+                                    <input type="text" class="form-control" ng-model="model.url" required ="" >                       
+                                    </div>
+
+                                    <div class="col-md-12">
+                                    <p>Icono</p>
+                                    <input type="text" class="form-control" ng-model="model.icono" required ="" >                       
+                                    </div>
+
+        
+                      
+                                   </div>
+
+                                    
+
+
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary">Agregar</button>
+                </form>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+<!--Modal-->
+
+    <!--Modales-->
+
+        <div id="edit" class="modal fade" role="dialog">
+          <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Edit External App</h4>
+              </div>
+              <div class="modal-body">
+                                    <form ng-submit="save(model)">
+
+                                    <div class='row'>
+                          
+
+                                    <div class="col-md-12">
+                                    <p>Nombre</p>
+                                    <input type="text" class="form-control" ng-model="model.nombre" required ="" >
+                                    </div>
+                                    <div class="col-md-12">
+                                    <p>URL</p>
+                                    <input type="text" class="form-control" ng-model="model.url" required ="" >                       
+                                    </div>
+
+                                    <div class="col-md-12">
+                                    <p>Icono</p>
+                                    <input type="text" class="form-control" ng-model="model.icono" required ="" >                       
+                                    </div>
+
+        
+                      
+                                   </div>
+
+                                    
+
+
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary">Agregar</button>
+                </form>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+<!--Modalfin-->
+
+    <!--Modales-->
+
+        <div id="eliminar" class="modal fade" role="dialog">
+          <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Agregar External App</h4>
+              </div>
+              <div class="modal-body">
+                                    <form ng-submit="agregar(model)">
+
+                                    <div class='row'>
+                          
+
+                                    <div class="col-md-12">
+                                    <p>Nombre</p>
+                                    <input type="text" class="form-control" ng-model="model.nombre" required ="" >
+                                    </div>
+                                    <div class="col-md-12">
+                                    <p>URL</p>
+                                    <input type="text" class="form-control" ng-model="model.url" required ="" >                       
+                                    </div>
+
+                                    <div class="col-md-12">
+                                    <p>Icono</p>
+                                    <input type="text" class="form-control" ng-model="model.icono" required ="" >                       
+                                    </div>
+
+        
+                      
+                                   </div>
+
+                                    
+
+
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary">Agregar</button>
+                </form>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+<!--Modalfin-->
+
+
+
+
+
+
+<script type="text/javascript" src="/static/js/preload.js"></script>
+  
+     
+
+
+   
+
+</body>
+</html>

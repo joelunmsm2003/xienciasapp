@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html ng-app="myApp" ng-controller="Todo">
+<head>
+    <title>Xiencias</title>
+  {% include "head.html" %}
+     <script type="text/javascript" src="/static/js/campania.js"></script>
+   
+</head>
+<body>
+
+
+{% include "header1.html" %}
+
+
+ <div class='cuerpo'>
+
+    {% include "verticalsms.html" %}
+
+
+      <div class='derecha'> 
+
+    <div class='container'>
+
+
+
+   
+         <div class="svg-container" id="boxContainer">
+        <svg id="boxLoader" width="70px" height="70px" viewBox="0 0 35 35" preserveAspectRatio="none">
+          <rect x="0" fill="#fff" width="35" height="35" />
+        </svg>
+        <svg id="base" width="210px" height="210px" viewBox="0 0 105 105" preserveAspectRatio="none">
+          <line stroke-width="1.5" fill="none" stroke="#383845" stroke-miterlimit="10" x1="0" y1="52.5" x2="105" y2="52.5" />
+        </svg>
+      </div>
+    
+
+   
+  <div class="panel panel-default">
+  <div class="panel-body">
+
+   
+    <div class='row'>
+
+      <div class="col-md-12" ng-if="user.authusergroups__group_id__name=='Admin' || user.authusergroups__group_id__name=='Superuser' ">
+
+      <button type="button" class="btn btn-primary" ng-click="editContact(contact,$index)" data-toggle="modal" data-target="#cliente"><i class="fa fa-plus"></i></button>
+       <h3>Campania SMS </h3>
+
+        
+
+        <table class="table  table-condensed table-hover clientes">
+    
+        <tbody>
+
+        <thead>
+
+            <tr>
+
+                  <th class='id_d_blaster'>Id <a ng-click="sort_by('id_d_blaster',currentPage)"><i class="icon-sort"></i></a></th>
+                  <th class='database__name' ng-if="user.cliente__capa==0">Nombre <a ng-click="sort_by('database__name',currentPage)"><i class="icon-sort"></i></a></th>
+                  <th class='name'>Mensaje <a ng-click="sort_by('name',currentPage)"><i class="icon-sort"></i></a></th>
+                  
+                  <th></th>
+             
+            </tr>
+
+            </thead>
+
+
+
+
+
+              <tr class='animate' ng-repeat="contact in campania  " ts-repeat>
+
+                <td>{[{contact.id}]} </td>
+
+                <td>{[{contact.name}]}</td>
+         
+                <td>{[{contact.mensaje}]}</td>
+
+                
+                <td>
+                <button type="button" class="btn btn-primary btn-sm" ng-click='getusuarios(contact)'>Detalle</button>
+          
+                     
+                </td>
+                
+                
+
+                </tr>
+
+
+        </tbody>
+
+
+        </table>
+
+
+
+        </div>
+
+
+
+
+
+      </div>
+</div>
+
+
+       
+
+         
+
+          
+        </div>
+
+        </div>
+
+
+</div>
+
+</div>
+
+
+
+
+</div>
+
+<!--Modales-->
+
+<div id="cliente" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Agregar Campaña SMS</h4>
+      </div>
+      <div class="modal-body">
+                            <form ng-submit="agregar(model)">
+
+                            <div class='row'>
+                  
+
+                            <div class="col-md-12">
+                            <p>Nombre</p>
+                            <input type="text" class="form-control" ng-model="model.name" required ="" >
+                            </div>
+                            <div class="col-md-12">
+                            <p>Mensaje</p>
+                            <textarea type="text" class="form-control" ng-model="model.mensaje" required ="" >
+                            </textarea> 
+                            </div>
+
+
+
+                            
+                           </div>
+
+                            
+
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-primary">Agregar</button>
+        </form>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!--Modalfin-->
+
+
+
+<!--Modalfin-->
+
+
+
+<script type="text/javascript" src="/static/js/preload.js"></script>
+
+
+
+
+
+</body>
+
+</html>

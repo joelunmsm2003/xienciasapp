@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html ng-app="myApp" ng-controller="Todo">
+<head>
+    <title>Xiencias</title>
+   
+
+  <link rel="stylesheet" type="text/css" href="/static/bower_components/bootstrap/dist/css/bootstrap.css">
+  <link rel="stylesheet" type="text/css" href="/static/css/animate.css">
+  
+  <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.js"></script>
+  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+
+
+  <link href='http://fonts.googleapis.com/css?family=Muli:300' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+  
+  <link href='/static/css/preload.css' rel='stylesheet' type='text/css'>
+  <script type="text/javascript" src="/static/bower_components/bootstrap/dist/js/bootstrap.js"></script>
+  <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+  <script type="text/javascript" src="/static/js/angular.js"></script>
+  <script type="text/javascript" src="/static/js/angular-cookie.js"></script>
+  <script type="text/javascript" src="/static/js/app.js"></script>
+  <link href='https://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="/static/css/estilos.css">
+  <script src="/static/js/main.js"></script>
+  <link href="/static/css/sweetalert.css" rel="stylesheet" type='text/css'>
+
+    <script type="text/javascript" src="/static/js/sweetalert.js"></script> 
+    <script type="text/javascript" src="/static/js/lotesms.js"></script>
+    <script src="/static/js/highchart.js"></script>
+    
+</head>
+<body>
+
+    {% include "header1.html" %}
+
+    <div class='cuerpo'>
+
+    {% include "verticalsms.html" %}
+
+      <div class='derecha'> 
+          
+          <div class='container'>
+
+           <h2>{[{name}]} </h2>
+
+
+            <div id="grafica" style="min-width: 1000px; height: 300px; margin: 0 auto"></div>
+
+
+       
+          
+
+
+  <!-- Trigger the modal with a button -->
+  
+
+  <!-- Modal -->
+  <div class="modal fade" id="enviarlote" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Desea Enviar este Lote</h4>
+        </div>
+        <div class="modal-body">
+          <p>Lote {[{lotename}]}</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal"  ng-click="Enviarlote()">Close</button>
+            <a ng-click="enviarlote()"  class="btn btn-primary"  >Enviar</a> 
+        </div>
+      </div>
+      
+    </div>
+  </div>
+
+
+    <div class="modal fade" id="cancelarlote" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Desea Cancelar este Lote</h4>
+        </div>
+        <div class="modal-body">
+          <p>Lote {[{lotename}]}</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="Cancelarlote()">Close</button>
+          <a ng-click="cancelarlote()" class="btn btn-primary"  >Cancelar</a> 
+        </div>
+      </div>
+      
+    </div>
+  </div>
+  
+
+
+            <a data-toggle="modal" href="#enviarlote" class="btn btn-primary" >Enviar Lote</a>
+            <a data-toggle="modal" href="#cancelarlote"  class="btn btn-primary" >Cancelar Lote</a>
+
+            <button class="btn btn-primary" ng-click='descarga()'>Descarga CSV</button>
+
+            
+
+
+
+           <br></br>
+
+            <p><strong>Registros en Proceso : {[{contador}]}</strong></p>
+            <!--<p>Pagina {[{pag+1}]}</p>
+
+              <button class="btn btn-primary" ng-click='prevpag()'><</button>
+            <button class="btn btn-primary" ng-click='nextpag()'>></button>
+
+            <br>-->
+
+
+           <div class="preloader loading">
+          <span class="slice"></span>
+          <span class="slice"></span>
+          <span class="slice"></span>
+          <span class="slice"></span>
+          <span class="slice"></span>
+          <span class="slice"></span>
+          </div>
+
+ 
+
+            <table class="table  table-condensed table-hover ">
+          
+              <tbody>
+
+              <thead>
+
+                  <tr>
+
+       
+
+                        <th class='id'>Id <a ng-click="sort_by('id',currentPage)"><i class="icon-sort"></i></a></th>
+                        <th class='destino'>Destino <a ng-click="sort_by('destino',currentPage)"><i class="icon-sort"></i></a></th>
+
+                        <th class='mensaje'>SMS  <a ng-click="sort_by('mensaje',currentPage)"><i class="icon-sort"></i></a></th>
+                        <th class='mensaje.length'>Nro Caracteres  <a ng-click="sort_by('mensaje.length',currentPage)"><i class="icon-sort"></i></a></th>
+                        <th class='status'>Status  <a ng-click="sort_by('status',currentPage)"><i class="icon-sort"></i></a></th>
+                 
+
+                  </tr>
+
+                  </thead>
+
+                        <tfoot>
+                    <td colspan="6">
+                        <div class=" pagination pull-right">
+                            <ul>
+                                <li ng-class="{disabled: currentPage == 0}">
+                                    <a href ng-click="prevPage()">« Prev</a>
+                                </li>
+                                <li ng-repeat="n in range(pagedItems.length)"
+                                    ng-class="{active: n == currentPage}"
+                                ng-click="setPage()">
+                                    <a href ng-bind="n + 1">1</a>
+                                </li>
+                                <li ng-class="{disabled: currentPage == pagedItems.length - 1}">
+                                    <a href ng-click="nextPage()">Next »</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </td>
+                </tfoot>
+
+
+
+       
+
+                    <tr class='animate' ng-repeat="contact in pagedItems[currentPage]  " ts-repeat>
+
+                      <td>{[{contact.id}]} </td>
+                  
+                   
+                      
+                      <td>{[{contact.destino}]}</td>
+                      <td>{[{contact.mensaje}]}</td>
+                      <td>{[{contact.mensaje.length}]}</td>
+                      <td>{[{contact.status}]}</td>
+                      <td>
+                <button type="button" class="btn btn-primary btn-sm" ><i class="fa fa-pencil-square-o"></i></button>
+                <button type="button" class="btn btn-primary btn-sm" ><i class="fa fa-trash"></i></button>
+                     
+                </td>
+                     
+                   
+                      
+                      
+
+
+                      <td>
+                     <!-- <button class="btn btn-primary" ng-click='Admin(contact)'>+</button>-->
+                    </td>
+                    <td>
+
+                       
+                      
+                    </td>
+
+
+
+
+                 
+                      
+
+                  
+
+                    </tr>
+
+
+              </tbody>
+
+
+              </table>
+
+
+
+           </div>
+      </div>
+
+    </div>
+
+  
+    
+<script type="text/javascript">
+
+  $('.preloader').show()
+
+lote = window.location.href.split("/")[5]
+
+database = window.location.href.split("/")[4]
+  
+$(function () {
+    $('#grafica').highcharts({
+        chart: {
+            type: 'column',
+            events: {
+                    load: function () {
+
+                    // set up the updating of the chart each second
+                    var series = this.series[0];
+                    var updateChart = function() {
+
+                    $.getJSON("/estados/"+7+"/"+lote, function (result) {
+
+                      series.data[0].update(result[0]);
+                      series.data[1].update(result[1]);
+
+
+                    });   
+
+
+        }      
+              
+        setInterval(function(){updateChart()},1000);
+
+
+
+                    }
+                }
+        },
+        title: {
+            text: 'Tráfico de Mensajes',
+           
+        },
+        
+        xAxis: {
+            categories: [
+                'Enviado',
+                'Por Enviar'
+            ],
+            crosshair: true
+        },
+        yAxis: {
+            min: 0,
+            title: {
+                text: 'Numero de Mensajes'
+            }
+        },
+        tooltip: {
+            headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+            pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                '<td style="padding:0"><b>{point.y} </b></td></tr>',
+            footerFormat: '</table>',
+            shared: true,
+            useHTML: true
+        },
+        plotOptions: {
+            column: {
+                pointPadding: 0.2,
+                borderWidth: 0
+            }
+        },
+        series: [{
+            name: 'Trafico',
+            data: [0, 0]
+
+        }]
+    });
+});
+
+</script>
+
+<style type="text/css">
+  
+  .highcharts-container{
+
+    background: #435;
+  }
+
+  .preloader{
+
+    margin-top:26.875em;
+  }
+
+.highcharts-background {
+  fill: #DCE7F2;
+}
+
+.highcharts-title{
+fill:#122E8B;
+
+}
+
+
+</style>
+   
+
+</body>
+</html>
+
+   

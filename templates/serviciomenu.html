@@ -1,0 +1,44 @@
+  <style type="text/css">
+    
+    li{
+      text-decoration: none;
+       list-style:none;
+    }
+
+</style>
+
+
+
+    <div class='row'>
+
+
+      <div class="col-md-1">
+
+      
+      
+      <li  ng-if="user.authusergroups__group_id__name == 'Admin' || user.authusergroups__group_id__name == 'Manager' || user.authusergroups__group_id__name == 'Superuser' "><a href="/externalapp"><span class='icon'><i class="fa fa-external-link"></i></span><span class='texto'> Servicios</span></a></li>
+
+      </div>
+
+      <div class="col-md-1">
+
+
+      
+      <li  ng-if="user.authusergroups__group_id__name == 'Admin' || user.authusergroups__group_id__name == 'Manager' || user.authusergroups__group_id__name == 'Superuser' "><a href="/externalapp"><span class='icon'><i class="fa fa-external-link"></i></span><span class='texto'> Apps</span></a></li>
+
+      </div>
+
+      <div class="col-md-1">
+
+      <li  ng-if="user.authusergroups__group_id__name == 'Admin' || user.authusergroups__group_id__name == 'Manager' || user.authusergroups__group_id__name == 'Superuser' "><a href="/externalapp"><span class='icon'><i class="fa fa-external-link"></i></span><span class='texto'> Cuotas</span></a></li>
+
+      </div>
+
+      <div class="col-md-1">
+
+      <li  ng-if="user.authusergroups__group_id__name == 'Admin' || user.authusergroups__group_id__name == 'Manager' || user.authusergroups__group_id__name == 'Superuser' "><a href="/externalapp"><span class='icon'><i class="fa fa-external-link"></i></span><span class='texto'> BBDD</span></a></li>
+
+      </div>
+
+    </div>
+    <br>

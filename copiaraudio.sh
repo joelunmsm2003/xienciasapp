@@ -1,0 +1,1 @@
+scp -P 5022 /var/www/html/files/*.gsm root@192.241.170.39:/etc/asterisk/voces/

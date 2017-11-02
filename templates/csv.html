@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+
+<html lang="en" ng-app="myApp" ng-controller="Todo">
+
+    <head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="/static/img/favicon.png">
+    <title>Xiencias</title>
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <script type="text/javascript" src="/static/js/jquery-1.9.1.min.js"></script>
+    <link href="/static/css/datetimepicker.css" rel="stylesheet" type='text/css'>
+    <script type="text/javascript" src="/static/js/datetimepicker.js"></script>
+    <script type="text/javascript" src="/static/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/static/js/angular.js"></script>
+    <script type="text/javascript" src="/static/js/angular-cookie.js"></script>
+    <link href="/static/css/bootstrap.css" rel="stylesheet" type='text/css'>
+    <link href="/static/css/sweetalert.css" rel="stylesheet" type='text/css'>
+    <script type="text/javascript" src="/static/js/sweetalert.js"></script>
+    <script type="text/javascript" src="/static/js/csv.js"></script>
+    <link rel="stylesheet" href="/static/css/estilos.css">
+    <link href='https://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+    <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link href='http://fonts.googleapis.com/css?family=Muli:300' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+
+    <script>
+
+    var myApp=angular.module('myApp', ['ngCookies']);
+
+    myApp.config(function($interpolateProvider){
+    $interpolateProvider.startSymbol('{[{').endSymbol('}]}');
+    });
+
+    myApp.directive('datetimez', function() {
+    return {
+        restrict: 'A',
+        require : 'ngModel',
+        link: function(scope, element, attrs, ngModelCtrl) {
+          element.datetimepicker({
+            dateFormat:'MM/dd/yyyy HH:mm:ss PP',
+            language: 'en'
+          }).on('changeDate', function(e) {
+            ngModelCtrl.$setViewValue(e.date);
+            scope.$apply();
+          });
+        }
+        };
+    });
+
+        var sortingOrder = '-id';
+    
+
+    </script>
+  
+</head>
+
+<body>
+
+
+    {% include "header1.html" %}
+
+    <div class='cuerpo'>
+
+    {% include "verticalblaster.html" %}
+
+
+    <div class='derecha'>
+
+
+ 
+
+       <form action="/csvfiltro/" method="POST">
+
+        {% csrf_token %}
+
+        <div class='row'>
+
+        
+      <div class="col-md-4">
+
+      <label class='label-1'>Lote:</label>
+      <select class="form-control" ng-options="item as item.name for item in lotex track by item.name" name="lote" ng-model="selected" ></select>
+
+      </div>
+
+        <div class="col-md-4">
+
+
+        <label class='label-1'>Fecha Inicio:</label>
+
+        <div class="well input">
+        <div id="date" class="input-append" datetimez ng-model='agregar.fechainicio'>
+          <input class="form-control" data-format="yyyy-MM-dd HH:mm:ss " type="text" id="input1" name="fechainicio"></input>
+          <span class="add-on">
+            <i data-time-icon="icon-time" data-date-icon="icon-calendar"></i>
+          </span>
+        </div>
+      </div>
+
+      </div>
+
+      <div class="col-md-4">
+
+      <label class='label-1'>Fecha Fin:</label>
+
+        <div class="well input">
+        <div id="date" class="input-append" datetimez ng-model='agregar.fechafin'>
+          <input class="form-control" data-format="yyyy-MM-dd HH:mm:ss" type="text" id="input1" name="fechafin"></input>
+          <span class="add-on">
+            <i data-time-icon="icon-time" data-date-icon="icon-calendar"></i>
+          </span>
+        </div>
+      </div>
+
+      </div>
+
+     
+
+
+       <div class="col-md-12">
+           
+            <button type="submit" class="btn btn-primary">Descarga CSV</button>
+
+            </div>
+            
+    </form>
+
+
+</div>
+</div>
+
+
+<style type="text/css">
+    
+    .logox {
+  width: 257px;
+  font-family: 'Madras';
+  color: white;
+  font-size: 38px;
+
+
+  /* padding-right: 10px; */
+  background: #4D515E;
+  margin-left: -26px;
+
+}
+
+header nav ul li .children {
+  display: none;
+  background: #011826;
+  position: absolute;
+  width: 100%;
+  z-index: 1000;
+  margin-left: 4px;
+}
+
+ul, ol {
+  margin-top: 0;
+  margin-bottom: 5px;
+}
+
+</style>
+
+
+
+
+</body></html>
+

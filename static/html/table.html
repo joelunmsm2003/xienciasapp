@@ -1,0 +1,83 @@
+
+
+    
+
+	 
+        <div class='row'>
+        <div class="col s3 m3"><input placeholder="Buscar" ng-change="search()"  type="text" ng-model="tipo" class="form-control" ></div>
+        </div>
+
+
+
+
+    Cantidad de Registros {{contador}}
+
+
+     <table class="responstable" style="width:100%">
+    
+        <tbody>
+
+            <thead>
+
+            <tr>
+                <th>Origen <a ng-click="sort_by('src',currentPage)"><i class="icon-sort"></i></a></th>
+                <th>Destino <a ng-click="sort_by('dst',currentPage)"><i class="icon-sort"></i></a></th>
+                <th>Fecha de Llamada <a ng-click="sort_by('calldate',currentPage)"><i class="icon-sort"></i></a></th>
+           		<th>Estado<a ng-click="sort_by('disposition',currentPage)"><i class="icon-sort"></i></a></th>
+                <th>Duración <a ng-click="sort_by('duration',currentPage)"><i class="icon-sort"></i></a></th>
+                <th>Billsec <a ng-click="sort_by('billsec',currentPage)"><i class="icon-sort"></i></a></th>
+           		
+            
+                            
+            </tr>
+
+            </thead>
+
+              <tfoot>
+                    <td colspan="6">
+                        <div class="pagination pull-right">
+                            <ul>
+                                <li ng-class="{disabled: currentPage == 0}">
+                                    
+                                    <a ng-click="prevPage()" class="waves-effect waves-light btn"><i class="material-icons">keyboard_arrow_left</i></a>
+                                </li>
+                                <li ng-repeat="n in range(pagedItems.length)"
+                                    ng-class="{active: n == currentPage}"
+                                ng-click="setPage()">
+                                    <a href ng-bind="n + 1">1</a>
+                                </li>
+                                <li ng-class="{disabled: currentPage == pagedItems.length - 1}">
+                                   
+                                    <a ng-click="nextPage()" class="waves-effect waves-light btn"><i class="material-icons">keyboard_arrow_right</i></a>
+                                </li>
+                            </ul>
+                        </div>
+                    </td>
+                </tfoot>
+
+
+
+              <td  ng-repeat="f in fields" class='active' ts-repeat>{{f}}</td>
+
+              <tr  ng-repeat="contact in pagedItems[currentPage] | orderBy:sortingOrder:reverse" class='active' ts-repeat>
+
+   
+
+       
+                <td data-th="Origen">{{contact.src}} </td>
+                <td data-th="Destino">{{contact.dst}}</td>
+                <td data-th="Fecha Llamada">{{contact.calldate}}</td>
+                <td data-th="Estado">{{contact.disposition}}</td>
+                <td data-th="Duración">{{contact.duration}}</td>
+                <td data-th="Billsec">{{contact.billsec}}</td>
+            
+
+              </tr>
+
+
+        </tbody>
+
+
+        </table>
+
+

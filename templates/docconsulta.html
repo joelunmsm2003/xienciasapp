@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html ng-app="myApp" ng-controller="Todo">
+<head>
+    <title>Xiencias</title>
+
+     {% include "head.html" %}
+
+    <script type="text/javascript" src="/static/js/app.js"></script>
+   
+</head>
+<body>
+
+    {% include "header1.html" %}
+
+    <div class='cuerpo'>
+
+    {% include "verticalblaster.html" %}
+
+
+    <div class='derecha'>
+
+    <div class='container'>
+
+        <div class='row'>
+
+
+            <div class="col-md-12">
+
+                <h2>Reportes Voip</h2>
+
+                <h5>Respuestas de las llamadas usando la API de Xiencias!</h5>
+                <hr align="left"  size="20" width="100%" />
+
+                <p>En unos pocos pasos, nosotros te explicaremos como consultar las llamadas realizadas usando la API de Xiencias</p>
+
+                <p>Primeramente, tu necesitaras una cuenta en Xiencias. Cuando tu tengas una cuenta tu obtendras un usuario y password</p>
+
+                <p>Luego tu usuario y password sera codificado en base64 como sigue:</p>
+
+                
+                <p><li>Combina el usuario y password en un string usuario:password </li></p>
+                <p><li>Codifica el resultado usando Base64 </li></p>
+                
+
+                <br>
+
+                <h4>Ejemplo</h4>
+
+                <p>Username: root</p>
+                <p>Password: 123</p>
+                <p>Base64 codificacion string: cm9vdDoxMjM= </p>
+
+                <h3>Consulta total de llamadas</h3>
+        
+      
+
+                <p>http://xiencias.com:9000/consultablaster/</p>
+                <hr align="left"  size="20" width="100%" />
+
+                <h2>Parametros</h2>
+
+                 <div class="panel panel-default">
+               
+                    <div class="panel-heading">
+
+                    <div class='row'>
+
+                    <div class="col-md-2">
+                    Variables
+                    </div>
+                    <div class="col-md-10">
+
+                    <p>Significado</p>
+                    
+                    </div>
+
+                    </div>
+                    
+                </div>
+                <div class="panel-body">
+                <div class='row'>
+
+                    <div class="col-md-2">
+                    <p style="font-weight: bold;">auth</p>
+                    </div>
+                    <div class="col-md-10">
+
+                    <p style="font-weight: bold;">String</p>
+                    <p>Codifacion Base64 del usuario y password</p>
+                    </div>
+
+                 
+                
+                
+                </div>
+
+           
+                </div>
+
+                </div>
+
+                <h3>Consulta de llamadas por lote </h3>
+      
+
+                <p>http://xiencias.com:9000/consultaloteblaster/</p>
+                <hr align="left"  size="20" width="100%" />
+
+                <h2>Parametros</h2>
+
+                 <div class="panel panel-default">
+               
+                    <div class="panel-heading">
+
+                    <div class='row'>
+
+                    <div class="col-md-2">
+                    Variables
+                    </div>
+                    <div class="col-md-10">
+
+                    <p>Significado</p>
+                    
+                    </div>
+
+                    </div>
+                    
+                </div>
+                <div class="panel-body">
+                <div class='row'>
+
+                    <div class="col-md-2">
+                    <p style="font-weight: bold;">auth</p>
+                    </div>
+                    <div class="col-md-10">
+
+                    <p style="font-weight: bold;">String</p>
+                    <p>Codifacion Base64 del usuario y password</p>
+                    </div>
+
+
+                    <div class="col-md-2">
+                    <p style="font-weight: bold;">lote</p>
+                    </div>
+                    <div class="col-md-10">
+
+                    <p style="font-weight: bold;">String</p>
+                    <p>Nombre del lote</p>
+                    </div>
+
+                 
+                
+                
+                </div>
+
+           
+                </div>
+
+            
+
+            
+
+
+    </div>
+
+    </div>
+
+
+
+
+  
+     
+
+
+   
+
+</body>
+</html>

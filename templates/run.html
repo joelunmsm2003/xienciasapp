@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html ng-app="myApp" ng-controller="Todo">
+<head>
+    <title>Xiencias</title>
+ 
+	{% include "head.html" %}
+	<script type="text/javascript" src="/static/js/run.js"></script>
+   
+</head>
+
+
+
+<body>
+
+{% include "header1.html" %}
+
+
+
+		<div class='container'>
+
+	
+
+<div class="flex-container">
+
+
+
+ <div class='flex-item' ng-repeat="s in servicios  " ts-repeat>
+
+
+ <div class='row'>
+
+    <div class="col-md-12" >
+
+	<center><p>{[{s.servicio__name}]}</p></center>
+
+    </div>
+
+    <div class="col-md-12">
+
+    <a class='btn btn-primary' ng-if="s.status==1">Explore</a>
+           
+    </div>
+ </div>
+
+
+
+	
+
+        </div> 
+
+</div>
+
+				
+
+<style> 
+.flex-container {
+    display: -webkit-flex;
+    display: flex;
+    -webkit-justify-content: center;
+    justify-content: center;
+    -webkit-align-items: center;
+    align-items: center;
+    width: 100%;
+    height: 70%;
+    background-color: #4D515E;
+    color:#fff;
+}
+
+.flex-item {
+    background-color: cornflowerblue;
+    width: 300px;
+    height: 100px;
+    margin: 10px;
+    justify-content: center;
+    padding: 25px;
+
+    border-radius: 10px;
+
+}
+
+p{
+    font-weight: bold;
+}
+</style>
+
+
+
+
+</body>
+</html>
+
+

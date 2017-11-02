@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html ng-app="myApp" ng-controller="Todo">
+<head>
+    <title>Xiencias</title>
+
+
+    {% include "head.html" %}
+
+    <script type="text/javascript" src="/static/js/audio.js"></script>
+
+   
+</head>
+<body>
+
+{% include "header1.html" %}
+
+
+    <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+
+    <link href="/static/css/toogle.css" rel="stylesheet">
+    <script src="/static/js/toogle.js"></script>
+
+    <script>
+
+    
+
+    $(function(){
+        $("#formuploadajax").on("submit", function(e){
+
+ 
+  
+        
+
+            e.preventDefault();
+            var f = $(this);
+            var formData = new FormData(document.getElementById("formuploadajax"));
+            console.log('formdata',formData)
+            formData.append("dato", "valor");
+            //formData.append(f.attr("name"), $(this)[0].files[0]);
+            $.ajax({
+                url: "/uploadaudio/",
+                type: "post",
+                dataType: "html",
+                data: formData,
+                cache: false,
+                contentType: false,
+                processData: false
+            })
+                .done(function(res){
+
+              location.reload(true); 
+
+                });
+        });
+    });
+    </script>
+
+
+    <div class='cuerpo'>
+
+    {% include "verticalblaster.html" %}
+
+
+    <div class='derecha'> 
+
+
+
+           
+
+    <div class='container'>
+
+    
+
+
+
+       
+   <div class="panel panel-default">
+  <div class="panel-body">
+
+   
+    <div class='row'>
+
+
+
+
+
+
+
+        <div class='col-md-12 ' ng-if="user.authusergroups__group_id__name=='Manager' || user.authusergroups__group_id__name=='Superuser' || user.authusergroups__group_id__name=='Admin'  ">
+
+
+          <button type="button" class="btn btn-primary" ng-click="editContact(contact,$index)" data-toggle="modal" data-target="#upload"><i class="fa fa-upload"></i></button>
+
+        <h3> Campañas de Audios <h5>Cantidad de Registros {[{contador}]}</h5></h3>
+
+
+
+        <form class="navbar-search pull-left" action="">
+        <input placeholder="Buscar" ng-change="search(tipo)"  type="text" ng-model="tipo" class="form-control" >
+        </form>
+
+
+
+        <table class="table  table-condensed table-hover clientes">
+    
+        <tbody>
+
+        <thead>
+
+            <tr>
+
+                 
+                  <th class='audio1'>Ruta <a ng-click="sort_by('audio1',currentPage)"><i class="icon-sort"></i></a></th>
+                  <th>
+                  Audio
+                  </th>
+            
+                  <th></th>
+             
+            </tr>
+
+            </thead>
+
+
+              
+              <tfoot>
+                    <td colspan="6">
+                        <div class="pagination pull-right">
+                            <ul>
+                                <li ng-class="{disabled: currentPage == 0}">
+                                    <a href ng-click="prevPage()">« Prev</a>
+                                </li>
+                                <li ng-repeat="n in range(pagedItems.length)"
+                                    ng-class="{active: n == currentPage}"
+                                ng-click="setPage()">
+                                    <a href ng-bind="n + 1">1</a>
+                                </li>
+                                <li ng-class="{disabled: currentPage == pagedItems.length - 1}">
+                                    <a href ng-click="nextPage()">Next »</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </td>
+                </tfoot>
+
+              <tr class='animate' ng-repeat="contact in pagedItems[currentPage]  " ts-repeat>
+
+            
+              <td>http://localhost/files/{[{contact.audio1}]}</td>
+           
+                <td><audio controls >
+                  <source src="http://localhost/files/bravo1.mp3" type="audio/mpeg">
+                  Your browser does not support the audio element.
+                  </audio>
+             
+           
+                <td>
+                <button type="button" class="btn btn-primary btn-sm" ><i class="fa fa-pencil-square-o"></i></button>
+                <button type="button" class="btn btn-primary btn-sm" ><i class="fa fa-trash"></i></button>
+                     
+                </td>
+                
+                
+
+                </tr>
+
+
+        </tbody>
+
+
+        </table>
+
+
+
+ </div>
+ </div>
+
+ <div class="svg-container" id="boxContainer">
+        <svg id="boxLoader" width="70px" height="70px" viewBox="0 0 35 35" preserveAspectRatio="none">
+          <rect x="0" fill="#fff" width="35" height="35" />
+        </svg>
+        <svg id="base" width="210px" height="210px" viewBox="0 0 105 105" preserveAspectRatio="none">
+          <line stroke-width="1.5" fill="none" stroke="#383845" stroke-miterlimit="10" x1="0" y1="52.5" x2="105" y2="52.5" />
+        </svg>
+      </div>
+ 
+        
+
+
+     </div>
+
+</div>
+
+    </div>
+
+<style type="text/css">
+    
+     .form-control {
+padding: 0px 0px ; 
+
+}
+
+.namebase{
+    padding: 0px 0px 0px 12px ; 
+}
+
+.base{
+
+    font-size: 20px;
+}
+
+   
+</style>
+
+<script type="text/javascript">
+    
+    $('.preloader').hide()
+    $('#formuploadajax').show()
+    
+</script>
+
+
+
+<div id="upload" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Agregar audio</h4>
+      </div>
+      <div class="modal-body">
+     
+
+
+      <form action="/uploadbase/" method="post" id="formuploadajax"  role="form" enctype="multipart/form-data">
+          {% csrf_token %}
+
+        
+          <i class="fa fa-file-excel-o base"></i>
+
+
+          <label for="pwd"> Audio </label>
+          <input type="file" name="audio1"  class="form-control excel" required ="">
+         
+
+
+      </div>
+
+         <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-primary">Agregar</button>
+        </form>
+
+
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!--Modalfin-->
+<script type="text/javascript" src="/static/js/preload.js"></script>
+
+
+</body>
+</html>

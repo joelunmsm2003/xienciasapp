@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<!-- saved from url=(0064)https://docs.angularjs.org/examples/example-example11/index.html -->
+<html lang="en" ng-app="App">
+<head>
+ 
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta charset="UTF-8">
+	<title>Unitlab</title>
+
+  <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/js/cdr/font-awesome.css" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="/static/css/cdr/l.css">
+  <script type="text/javascript" src='/static/js/cdr/jquery-2.1.1.min.js'></script>
+  <link rel="stylesheet" href="/static/js/cdr/materialize.css">
+  <script src="/static/js/cdr/materialize.js"></script>
+
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href='https://fonts.googleapis.com/css?family=Muli' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300' rel='stylesheet' type='text/css'>
+
+
+</head>
+<body ng-controller="Controller" >
+
+  <nav>
+    <div class="nav-wrapper">
+      <a href="#!" class="brand-logo"> </a>
+      <a href="#" data-activates="mobile-demo" class="button-collapse show-on-large"><i class="material-icons">menu</i></a>
+    </div>
+  </nav>
+
+<div class='container'>
+
+	<h4>Filtro</h4>
+
+
+		<form action="/buscar/" method="POST"  role="form">
+
+		{% csrf_token %}
+
+		<div class="row">
+		<div class="col s6 m2"><input type="date" name="inicio" class="datepicker" placeholder ='Inicio' ></div>
+		<div class="col s6 m2"><input type="date" name="fin" class="datepicker" placeholder ='Fin' ></div>
+		<div class="col s6 m2">
+		<select name="elemento" >
+		<option value="none">Escoja una opcion</option>
+	
+    <option value="src">Origen</option>
+    <option value="dst">Destino</option>
+    <option value="disposition">Estado</option>
+    <option value="duration">Duración</option>
+		</select>
+		<label>Elemento</label>
+		</div>
+
+		<div class="col s6 m2"><input type="text" name="valor"  ></div>
+		<div class="col s6 m2"><button class="btn btn-primary" type="submit">Buscar</button></div>
+
+		
+		</div>
+		</form>
+
+
+<h4>Resultado de Búsqueda</h4><br>
+
+Cantidad Total {{con}}
+
+
+
+  <table class="responstable" style="width:100%">
+
+
+
+
+ <tbody>
+            <thead>
+
+    
+
+            <tr>
+               
+                <th>Origen <a ng-click="sort_by('src',currentPage)"></a></th>
+                <th>Destino <a ng-click="sort_by('dst',currentPage)"></a></th>
+                <th>Fecha de Llamada <a ng-click="sort_by('calldate',currentPage)"></a></th>
+                <th>Estado<a ng-click="sort_by('disposition',currentPage)"></a></th>
+                <th>Duración <a ng-click="sort_by('duration',currentPage)"></a></th>
+                <th>Billsec <a ng-click="sort_by('billsec',currentPage)"></a></th>               
+
+                            
+            </tr>
+
+            </thead>
+
+
+{% for contact in data%}
+
+<tr>
+
+    <td data-th="Origen" >{{contact.src}}</td>
+    <td data-th="Destino">{{contact.dst}}</td>
+    <td data-th="Calldate">{{contact.calldate}}</td>
+    <td data-th="Estado">{{contact.disposition}}</td>
+    <td data-th="Duracion">{{contact.duration}}</td>
+    <td data-th="Billsec">{{contact.billsec}}</td>
+
+
+    
+</td>
+
+</tr>
+    
+{% endfor %}
+
+ </tbody>
+
+
+</table>
+
+
+
+
+
+
+
+</div>
+<script src="/static/js/cdr/highchart.js"></script>
+
+<script type="text/javascript">
+	
+ $('.button-collapse').sideNav({
+      menuWidth: 300, // Default is 240
+      edge: 'right', // Choose the horizontal origin
+      closeOnClick: true // Closes side-nav on <a> clicks, useful for Angular/Meteor
+    }
+  );
+
+   $('.datepicker').pickadate({
+    selectMonths: true, // Creates a dropdown to control month
+    selectYears: 15 // Creates a dropdown of 15 years to control year
+  });
+
+   
+  $(document).ready(function() {
+    $('select').material_select();
+  });
+          
+        
+      
+
+</script>
+
+<style type="text/css">
+	ul li {
+  list-style-type: none;
+  height: 69px;
+}
+
+.switch, .switch * {
+  -webkit-user-select: none;
+  padding: 17px;
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  -ms-user-select: none;
+}
+
+
+</style>
+
+
+</html>

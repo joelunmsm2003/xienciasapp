@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html ng-app="myApp" ng-controller="Todo">
+<head>
+    <title>Xiencias</title>
+
+
+    {% include "head.html" %}
+
+    <script type="text/javascript" src="/static/js/sms.js"></script>
+   
+</head>
+<body>
+
+
+
+
+
+
+
+    {% include "header1.html" %}
+
+        <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+
+    <link href="/static/css/toogle.css" rel="stylesheet">
+    <script src="/static/js/toogle.js"></script>
+
+
+      <div class='cuerpo'>
+
+    {% include "verticalsms.html" %}
+
+
+      <div class='derecha'> 
+
+      <div class='container'>
+
+      
+<!--Modal-->
+
+
+<div id="smsindividual" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">SMS Individual</h4>
+      </div>
+        <div class="modal-body">
+     
+
+
+        <form ng-submit="smsindividual(model)" >
+          
+
+      
+          <div class='row'>
+                  
+
+                            <div class="col-md-12">
+                            <p>Telefono</p>
+                            <input type="text" class="form-control" ng-model="model.telefono" required ="" >
+                            </div>
+
+                            <div class="col-md-12">
+                            <p>Mensaje</p>
+                            <textarea type="text" class="form-control" ng-model="model.mensaje" required =""></textarea>  
+                        
+                            </div>
+                            <div class="col-md-12">
+                            <p>Fecha</p>
+                            <input type="date" class="form-control" ng-model="model.fecha" required ="" >
+                            
+                            </div>
+
+
+
+                            
+                           </div>
+
+
+
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-primary">Agregar</button>
+          </form>
+
+
+        </div>
+    </div>
+
+  </div>
+</div>
+
+
+
+
+<div id="grupo" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Agregar Base</h4>
+      </div>
+        <div class="modal-body">
+     
+
+
+        <form action="/upbase/" method="post" id="formuploadajax"  role="form" enctype="multipart/form-data">
+          {% csrf_token %}
+
+      
+          <p>Nombre</p>
+          <input type="text" class="form-control" name='name' ng-model='rbase.name' required ="" >
+       
+          <br>
+          <p><i class="fa fa-file-excel-o base"></i> Excel </p>
+       
+          <input type="file" name="process_file"  ng-model='rbase.excel' class="form-control excel" required ="">
+       
+
+
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-primary">Agregar</button>
+          </form>
+
+
+        </div>
+    </div>
+
+  </div>
+</div>
+
+
+<div id="campa" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Agregar Campaña SMS</h4>
+      </div>
+      <div class="modal-body">
+                            <form ng-submit="agregar(model)">
+
+                            <div class='row'>
+                  
+
+                            <div class="col-md-12">
+                            <p>Nombre</p>
+                            <input type="text" class="form-control" ng-model="model.namecampania" required ="" >
+                            </div>
+                            <div class="col-md-12">
+                            <p>Mensaje</p>
+                            <textarea type="text" class="form-control" ng-model="model.mensaje" required ="" >
+                            </textarea> 
+                            </div>
+
+
+
+                            
+                           </div>
+
+                            
+
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-primary">Agregar</button>
+        </form>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!--fin modal-->
+
+<!--Detalle del Lote SMS-->
+
+
+<button type="button" class="btn btn-primary"  data-toggle="modal" data-target="#smsindividual"><i class="fa fa-paper-plane" style='font-weight:bold;'></i></button>
+         
+
+      <h2>Lotes SMS</h2>
+
+
+          <form ng-submit="agregarsms(model)">
+
+          <div class='row'>
+
+          <div class="col-md-3">
+          <p>Nombre</p>
+          <input type="text" ng-model ='model.name' name="" id="input" class="form-control" value="" required=""  >
+
+          </div>
+
+          <div class="col-md-3">
+
+
+          <p><i class="fa fa-globe"></i><a href='/agenda'> Base</a></p>
+          <div class='row'>
+         
+          <div class="col-md-10">
+
+          <select class='form-control' ng-options="item as item.name for item in grupos track by item.id" ng-model="model.grupo"></select>
+          </div>
+           <div class="col-md-2">
+          <button type="button" class="btn btn-primary"  data-toggle="modal" data-target="#grupo"><i class="fa fa-plus"></i></button>
+          </div>
+
+
+          </div>
+
+
+          </div>
+
+          <div class="col-md-3">
+          <p>Campaña</p>
+          <div class='row'>
+          <div class="col-md-10">
+          <select class='form-control' ng-options="item as item.name for item in campanias track by item.id" ng-model="model.campanias"></select>
+           </div>
+           <div class="col-md-2">
+
+          <button type="button" class="btn btn-primary"  data-toggle="modal" data-target="#campa"><i class="fa fa-plus"></i></button>
+
+          
+          </div>
+
+          </div>
+
+          </div>
+
+          <div class="col-md-3">
+
+
+
+          <p><i class="fa fa-paper-plane-o"></i></p>
+          <button type="submit" class="btn btn-primary">Agregar</button>
+
+          </div>
+
+          </div>
+          </form>
+
+      
+
+          <style type="text/css">
+
+          .preloader{
+
+            margin-top: 5em;
+          }
+
+          </style>
+
+              <div class="preloader loading">
+
+          <span class="slice"></span>
+          <span class="slice"></span>
+          <span class="slice"></span>
+          <span class="slice"></span>
+          <span class="slice"></span>
+          <span class="slice"></span>
+
+          </div>
+
+
+
+          <br></br>
+      <table class="table  table-condensed table-hover ">
+    
+        <tbody>
+
+        <thead>
+
+            <tr>
+
+ 
+
+             
+                  <th class='lote'>ID <a ng-click="sort_by('lote',currentPage)"><i class="icon-sort"></i></a></th>
+                            <th class='total'>Nombre  <a ng-click="sort_by('total',currentPage)"> <i class="icon-sort"></i></a></th>
+                    <th class='fecha'>Fecha  <a ng-click="sort_by('fecha',currentPage)"> <i class="icon-sort"></i></a></th>
+                  
+
+
+            </tr>
+
+            </thead>
+
+
+              <tr class='animate' ng-repeat="contact in pagedItems[currentPage]  " ts-repeat>
+                  
+                   <td> {[{contact.id}]}</td>
+                  <td> {[{contact.name}]}</td>
+                  <td> {[{contact.fecha}]}</td>
+          
+
+
+              <td>
+              <button class="btn btn-primary btn-sm" ng-click='verlotesms(contact)'>Detalle <i class="fa fa-chevron-right"></i></button>
+              </td>
+              <td>
+
+                   
+         </td>
+
+              </tr>
+
+
+        </tbody>
+
+
+        </table>
+
+
+
+     </div> 
+      </div>
+
+    </div>
+
+  
+<style type="text/css">
+  
+  p {
+  margin: 0 0 10px;
+  font-weight: bold;
+}
+</style>
+
+   
+
+</body>
+</html>
+
+   

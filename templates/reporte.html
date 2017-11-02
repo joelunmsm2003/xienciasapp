@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html ng-app="myApp" ng-controller="Todo">
+<head>
+    <title>Xiencias</title>
+  {% include "head.html" %}
+     <script type="text/javascript" src="/static/js/reporte.js"></script>
+   
+</head>
+<body>
+
+
+{% include "header1.html" %}
+
+    <div class='cuerpo'>
+
+    {% include "verticalblaster.html" %}
+
+
+    <div class='derecha'> 
+
+   
+
+      <div class="container">
+
+       <h2>Reporte </h2>
+
+                <hr align="left"  size="20" width="100%" />
+
+<form class="navbar-form navbar-left" ng-submit="filtrado(filtro)">
+
+      <div class="form-group">
+      <label>Fecha Inicio</label>
+        <input placeholder="Fecha inicio"  type="date" ng-model="filtro.inicio" class="form-control" >
+      </div>
+      <div class="form-group">
+      <label> Fecha Fin </label>
+        <input placeholder="Fecha fin"  type="date" ng-model="filtro.fin" class="form-control" >
+      </div>
+
+      <div class="form-group">
+      <label>Parametro</label>
+      <select class="form-control" ng-options="item as item for item in items" ng-model="filtro.parametro"></select>
+      </div>
+
+       <div class="form-group">
+      <label>Valor</label>
+        <input placeholder="Valor"   type="text" ng-model="filtro.valor" class="form-control" >
+      </div>
+      <button type="submit" class="btn btn-primary">Buscar</button>
+
+
+
+</form>
+
+<br></br><br></br>
+
+
+ <table class="table  table-condensed table-hover ">
+    
+        <tbody>
+
+        <thead>
+
+            <tr>
+
+ 
+
+                  <th class='id_d_blaster'>Id <a ng-click="sort_by('id_d_blaster',currentPage)"><i class="icon-sort"></i></a></th>
+                  <th class='fh_inicio'>Fecha <a ng-click="sort_by('fh_inicio',currentPage)"><i class="icon-sort"></i></a></th>
+                  <th class='tduracion'>Duracion <a ng-click="sort_by('tduracion',currentPage)"><i class="icon-sort"></i></a></th>
+                  <th class='destino'>Destino <a ng-click="sort_by('destino',currentPage)"><i class="icon-sort"></i></a></th>
+                  <th class='audio'>Audio <a ng-click="sort_by('audio',currentPage)"><i class="icon-sort"></i></a></th>
+                  <th class='lestado'>Estado <a ng-click="sort_by('lestado',currentPage)"><i class="icon-sort"></i></a></th>
+                  <th class='respuesta'>Intentos <a ng-click="sort_by('respuesta',currentPage)"><i class="icon-sort"></i></a></th>
+
+            </tr>
+
+            </thead>
+
+
+              <tfoot>
+                    <td colspan="12">
+                      <ul class="pagination" ng-repeat="n in toto">
+                      <li ng-class="{active: n-1 == currentPage}"><a href="#" ng-click="setPage()">{[{n}]}</a></li>
+                      </ul>
+      
+                    </td>
+                </tfoot>
+
+
+
+
+ 
+
+              <tr class='animate' ng-repeat="contact in pagedItems[currentPage]  " ts-repeat>
+
+                <td>{[{contact.id_d_blaster}]} </td>
+            
+                <td>{[{contact.fh_inicio}]}</td>
+                <td>{[{contact.duracion}]}</td>
+                <td>{[{contact.destino}]}</td>
+                <td>{[{contact.audio}]}</td>
+                <td>{[{contact.lestado}]}</td>
+                <td>{[{contact.intentos}]}</td>
+
+
+                <td>
+               <!-- <button class="btn btn-primary" ng-click='Admin(contact)'>+</button>-->
+              </td>
+              <td>
+              
+              </td>
+
+              </tr>
+
+
+        </tbody>
+
+
+        </table>
+
+
+</div>
+
+    </div>
+
+    </div>
+
+
+
+
+
+
+
+</body>
+
+</html>

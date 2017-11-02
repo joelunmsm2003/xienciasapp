@@ -1,0 +1,132 @@
+  <html>
+    <head>
+
+  <title>Personalize your site</title>
+<link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta charset="UTF-8"><meta name="robots" content="noindex"><link rel="canonical" href="http://codepen.io/sjmcpherso/pen/jpoGt">
+
+<link rel="stylesheet" href="/static/css/cdr/o.css">
+<script type="text/javascript" src="/static/js/cdr/e.js"></script>
+
+    <script type="text/javascript" src='/static/js/cdr/jquery-2.1.1.min.js'></script>
+
+    <link rel="stylesheet" href="/static/js/cdr/materialize.css">
+
+    <script src="/static/js/cdr/materialize.js"></script>
+
+<style class="cp-pen-styles">section{width:300px;margin:0 auto;}
+#img{max-height:300px;max-width:300px;}
+.btn{
+  background-color:#333;
+  display:block;color:#fff;
+  padding:10px 15px;
+  font: 16px Helvetica;
+  text-decoration:none;
+  text-align:center;
+  margin:1px 0;
+}
+#file{display:none;}</style>
+
+    </head>
+
+    <body>
+
+
+<div class='row container'>
+
+      <div class='col s12 m4'>
+        <section>
+        <img src="http://www.randomlengthsnews.com/wp-content/themes/gonzo/images/no-image-blog-one.png" id="img">
+        <a id="addphoto" href="#" class="btn">+ Add Logo</a>
+        <a id="removephoto" href="#" class="btn">x Remove Logo</a>   
+        </section>
+        <input type="file" name="file" id="file" accept="image/*;capture=camera" capture="camera">
+        <script src="//assets.codepen.io/assets/common/stopExecutionOnTimeout.js?t=1"></script>
+      </div>
+
+      <div class='col s12 m4'>
+  <div class="card">
+    <div class="card-image waves-effect waves-block waves-light">
+      <img class="activator" src="images/office.jpg">
+    </div>
+    <div class="card-content">
+      <span class="card-title activator grey-text text-darken-4">Card Title<i class="material-icons right">more_vert</i></span>
+      <p><a href="#">This is a link</a></p>
+    </div>
+    <div class="card-reveal">
+      <span class="card-title grey-text text-darken-4">Card Title<i class="material-icons right">close</i></span>
+      <p>Here is some more information about this product that is only revealed once clicked on.</p>
+    </div>
+  </div>
+      </div>
+
+      <div class='col s12 m4'>
+
+      </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+var img = document.getElementById('img');
+var noimage = img.src;
+function handleFileSelect(evt) {
+    var file = evt.target.files[0];
+    console.log(file);
+    img.src = window.URL.createObjectURL(file);
+}
+document.getElementById('file').addEventListener('change', handleFileSelect, false);
+document.querySelector('#removephoto').addEventListener('click', function (e) {
+    document.getElementById('file').value = '';
+    img.src = noimage;
+    e.preventDefault();
+});
+document.querySelector('#img').addEventListener('click', function (e) {
+    performClick(document.getElementById('file'));
+    e.preventDefault();
+});
+document.querySelector('#addphoto').addEventListener('click', function (e) {
+    performClick(document.getElementById('file'));
+    e.preventDefault();
+});
+function performClick(node) {
+    var evt = document.createEvent('MouseEvents');
+    evt.initEvent('click', true, false);
+    node.dispatchEvent(evt);
+}
+//# sourceURL=pen.js
+</script>
+<script src="//codepen.io/assets/editor/live/css_live_reload_init.js"></script>
+
+
+
+    </body>
+  </html>
+  
+
+
+
+
+
+
+
+
+
+

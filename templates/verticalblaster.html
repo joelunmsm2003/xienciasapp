@@ -1,0 +1,104 @@
+<div class='izquierda animated fadeInLeft'>
+		
+		<div  class='itemvertical' onclick='comenzar()'>
+			<div class='titvertical'>Comenzar</div>
+			<div class='iconvertical'><i class="fa fa-info"></i></div>
+		</div>
+		<!--
+		<div  class='itemvertical' onclick='mbase()'>
+			<div class='titvertical'>Carga Base</div>
+			<div class='iconvertical'><i class="fa fa-database"></i></div>
+		</div>-->
+
+		<!--<div  class='itemvertical' onclick='maudio()'>
+			<div class='titvertical'>Audios</div>
+			<div class='iconvertical'><i class="fa fa-rocket"></i></div>
+		</div>-->
+
+
+		<div  class='itemvertical' onclick='mlote()'>
+			<div class='titvertical'>Envio Blaster</div>
+			<div class='iconvertical'><i class="fa fa-file-audio-o"></i></div>
+		
+		</div>
+
+		<div  class='itemvertical' onclick='consulta()'>
+			<div class='titvertical'>Reportes</div>
+			<div class='iconvertical'><i class="fa fa-filter"></i></div>
+		
+		</div>
+
+	
+
+		<div  class='itemvertical' onclick='apiintro()'>
+			<div class='titvertical'>API</div>
+			<div class='iconvertical'><i class="fa fa-codepen"></i></div>
+		
+		</div>
+
+		<div  class='itemvertical' onclick='apicarga()'>
+			<div class='titvertical'>Carga API</div>
+			<div class='iconvertical'><i class="fa fa-flask"></i></div>
+		
+		</div>
+
+		<div  class='itemvertical' onclick='apiconsulta()' style="border-bottom: 1px solid #337AB7;">
+			<div class='titvertical'>Filtro API</div>
+			<div class='iconvertical'><i class="fa fa-cube"></i></div>
+		
+		</div>
+
+
+		
+
+	</div>
+
+	<script type="text/javascript">
+
+	function comenzar(){
+
+		window.location.href = "/menu"
+
+		console.log('ssss')
+	}
+
+	function mbase(){
+
+		window.location.href = "/cargabase"
+		console.log('base')
+	}
+
+	function mlote(){
+
+		window.location.href = "/mlote"
+	}
+
+	function maudio(){
+
+		window.location.href = "/audio"
+	}
+
+	function consulta(){
+
+		window.location.href = "/descargacsv"
+	}
+
+	function apiintro(){
+
+		window.location.href = "/introduccion"
+	}
+
+	function apicarga(){
+
+		window.location.href = "/doccarga"
+	}
+
+	function apiconsulta(){
+
+		window.location.href = "/docconsulta"
+	}
+
+
+
+
+	</script>
